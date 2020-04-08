@@ -11,7 +11,10 @@ const CollectionItem = ({ item, addItem }) => {
 
   return (
     <div className="collection-item">
-      <div className="image" style={{ backgroundImage: `url(${imageUrl})` }} />
+      <div
+        className="image"
+        style={{ backgroundImage: `url(${process.env.PUBLIC_URL + imageUrl})` }}
+      />
       <div className="collection-footer">
         <span className="name">{name}</span>
         <span className="price">{price}</span>
