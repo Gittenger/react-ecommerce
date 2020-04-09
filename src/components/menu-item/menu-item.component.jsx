@@ -1,7 +1,13 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
-import "./menu-item.styles.scss";
+import {
+  MenuItemContainer,
+  BackgroundImageContainer,
+  ContentContainer,
+  ContentTitle,
+  ContentSubtitle,
+} from "./menu-item.styles";
 
 const MenuItem = ({
   title,
@@ -10,21 +16,21 @@ const MenuItem = ({
   size,
   history,
   linkUrl,
-  match
+  match,
 }) => (
-  <div
-    className={`menu-item${size ? " " + size : ""}`}
+  <MenuItemContainer
+    size={size}
     onClick={() => history.push(`${match.url}${linkUrl}`)}
   >
-    <div
+    <BackgroundImageContainer
       className="background-image"
-      style={{ backgroundImage: `url(${imageUrl})` }}
-    ></div>
-    <div className="content">
-      <h1 className="title">{title.toUpperCase()}</h1>
-      <span className="subtitle">{subtitle}</span>
-    </div>
-  </div>
+      imageUrl={imageUrl}
+    ></BackgroundImageContainer>
+    <ContentContainer className="content">
+      <ContentTitle>{title.toUpperCase()}</ContentTitle>
+      <ContentSubtitle>{subtitle}</ContentSubtitle>
+    </ContentContainer>
+  </MenuItemContainer>
 );
 
 export default withRouter(MenuItem);

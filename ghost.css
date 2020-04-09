@@ -1,0 +1,6 @@
+/* use for getting autocomplete when writing styled components */
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
