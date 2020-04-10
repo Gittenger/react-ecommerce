@@ -14,6 +14,9 @@ const config = {
   measurementId: "G-DXZJ61D4VG",
 };
 
+firebase.initializeApp(config);
+firebase.analytics();
+
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
 
@@ -41,8 +44,24 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 };
 
-firebase.initializeApp(config);
-firebase.analytics();
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
+  const collectionRef = firestore.collection(collectionKey);
+
+  //use batch to set many docs and only succeed if each succeeds
+  const batch = firestore.batch();
+
+  objectsToAdd.forEach((obj) => {
+    //create new docRef pointing at empty doc in specified collection w/ unique id
+    //can pass own specified id in as param, if empty, generates random unique id
+    const newDocRef = collectionRef.doc();
+    batch.set(newDocRef, obj);
+  });
+  //commit batch, returns promise
+  return await batch.commit();
+};
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
