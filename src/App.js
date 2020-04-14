@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "./redux/user/user.selectors";
+import { checkUserSession } from "./redux/user/user.actions";
 import { selectCollectionsForPreview } from "./redux/shop/shop.selectors";
 
 import HomePage from "./pages/homepage/homepage.component";
@@ -14,6 +15,11 @@ import Header from "./components/header/header.component";
 import "./App.scss";
 
 class App extends React.Component {
+  componentDidMount() {
+    const { checkUserSession } = this.props;
+    checkUserSession();
+  }
+
   render() {
     return (
       <div>
@@ -40,4 +46,8 @@ const mapStateToProps = createStructuredSelector({
   collectionsArray: selectCollectionsForPreview,
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => ({
+  checkUserSession: () => dispatch(checkUserSession()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
