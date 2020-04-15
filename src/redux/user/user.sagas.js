@@ -80,7 +80,7 @@ export function* onSignUpSuccess() {
 
 export function* isUserAuthenticated() {
   try {
-    const userAuth = getCurrentUser();
+    const userAuth = yield getCurrentUser();
     if (!userAuth) return;
     yield getSnapshotFromUserAuth(userAuth);
   } catch (err) {
