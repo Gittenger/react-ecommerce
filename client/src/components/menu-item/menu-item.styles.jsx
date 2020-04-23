@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+import device from "../../styles.utils";
+
+const { tablet } = device;
+
 export const MenuItemContainer = styled.div`
   height: ${({ size }) => (size ? "380px" : "240px")};
   min-width: 30%;
@@ -30,6 +34,10 @@ export const MenuItemContainer = styled.div`
 
   &:last-child {
     margin-left: 7.5px;
+  }
+
+  @media ${tablet} {
+    height: 200px;
   }
 `;
 

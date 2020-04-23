@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import CustomButton from "../custom-button/custom-button.component";
 
+import device from "../../styles.utils";
+
+const { tablet } = device;
+
 export const CollectionItemContainer = styled.div`
   width: 22vw;
   display: flex;
@@ -17,6 +21,20 @@ export const CollectionItemContainer = styled.div`
     button {
       opacity: 0.85;
       display: flex;
+    }
+  }
+
+  @media ${tablet} {
+    width: 40vw;
+
+    &:hover {
+      .image {
+        opacity: unset;
+      }
+
+      button {
+        opacity: unset;
+      }
     }
   }
 `;
@@ -53,4 +71,11 @@ export const AddButton = styled(CustomButton)`
   position: absolute;
   top: 255px;
   display: none;
+
+  @media ${tablet} {
+    display: block;
+    opacity: 0.9;
+    min-width: unset;
+    padding: 0 10px;
+  }
 `;
