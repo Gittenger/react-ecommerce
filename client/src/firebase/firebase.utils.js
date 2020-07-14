@@ -14,6 +14,9 @@ const config = {
   measurementId: "G-DXZJ61D4VG",
 };
 
+// check firebase security rules in console.
+// updated to encrypt database access
+
 firebase.initializeApp(config);
 firebase.analytics();
 
